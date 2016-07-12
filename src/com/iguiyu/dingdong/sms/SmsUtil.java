@@ -5,6 +5,8 @@
 
 package com.iguiyu.dingdong.sms;
 
+import com.iguiyu.dingdong.model.AttendanceSMS;
+import com.iguiyu.dingdong.model.HomeworkSMS;
 import com.iguiyu.dingdong.model.VerifyCode;
 import com.taobao.api.ApiException;
 import com.taobao.api.TaobaoClient;

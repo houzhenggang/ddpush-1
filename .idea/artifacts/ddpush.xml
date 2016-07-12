@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ddpush">
+    <output-path>$PROJECT_DIR$/out/artifacts/ddpush</output-path>
+    <root id="archive" name="ddpush.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ddpush" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

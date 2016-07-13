@@ -8,14 +8,14 @@ package com.iguiyu.dingdong.task;
 import com.iguiyu.dingdong.dao.ConstantDao;
 import com.iguiyu.dingdong.dao.PushInfoDao;
 import com.iguiyu.dingdong.model.PushInfo;
-import com.iguiyu.dingdong.service.AttendanceService;
-import com.iguiyu.dingdong.service.HomeworkService;
-import com.iguiyu.dingdong.service.MessageService;
-import com.iguiyu.dingdong.service.PointsService;
-import com.iguiyu.dingdong.service.ScoreService;
+import com.iguiyu.dingdong.service.*;
+
 import java.util.Iterator;
 import java.util.List;
+
+import com.iguiyu.dingdong.service.impl.InfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -33,6 +33,8 @@ public class WXTasks {
     PointsService pointsService;
     @Autowired
     ScoreService scoreService;
+    @Autowired
+    InfoServiceImpl infoService;
     @Autowired
     HomeworkService homeworkService;
     @Autowired
@@ -52,20 +54,26 @@ public class WXTasks {
         for(Iterator i$ = list.iterator(); i$.hasNext(); this.pushInfoDao.setSended(item.getId())) {
             item = (PushInfo)i$.next();
             switch(item.getOwnerType()) {
-            case 0:
+            case PushInfo.OWNER_TYPE_MESSAGE:
                 this.messageService.sendWXTemplate(item);
                 break;
-            case 1:
+            case PushInfo.OWNER_TYPE_ATTENDANCE:
                 this.attendanceService.sendWXTemplate(item);
                 break;
-            case 2:
+            case PushInfo.OWNER_TYPE_HOMEWORK:
                 this.homeworkService.sendWXTemplate(item);
                 break;
-            case 3:
+            case PushInfo.OWNER_TYPE_POINTEVENT:
                 this.pointsService.sendWXTemplate(item);
                 break;
-            case 4:
+            case PushInfo.OWNER_TYPE_SCORE:
                 this.scoreService.sendWXTemplate(item);
+            case PushInfo.OWNER_TYPE_APPRAISE:
+                this.infoService.sendWXTemplate(item);
+            case PushInfo.OWNER_TYPE_SCHEDULE:
+                this.infoService.sendWXTemplate(item);
+
+
             }
         }
 

@@ -16,6 +16,9 @@ public interface StudentDao {
     @Select({"SELECT * FROM STUDENT WHERE STUDENT_NO = #{student_no}"})
     List<Student> getStudentsByNo(String var1);
 
+    @Select({"SELECT * FROM STUDENT WHERE ID = #{id}"})
+    Student get(int id);
+
     @Select({" SELECT S.*,P.ID PARENT_ID,P.PARENT_OPENID,P.ISMAIN FROM SCHOOL_CLASS_RELA SC,STUDENT S,PARENT_STUDENT_RELA P WHERE 1=1 AND S.CLASS_ID = SC.CLASS_ID AND P.STUDENT_ID = S.ID AND SC.CLASS_ID = #{class_id} "})
     List<StudentParentRela> getStudentParentRelaByClass(int var1);
 

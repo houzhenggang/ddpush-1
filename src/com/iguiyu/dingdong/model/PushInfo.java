@@ -32,6 +32,8 @@ public class PushInfo {
     public static final int OWNER_TYPE_HOMEWORK = 2;
     public static final int OWNER_TYPE_POINTEVENT = 3;
     public static final int OWNER_TYPE_SCORE = 4;
+    public static final int OWNER_TYPE_APPRAISE = 5;
+    public static final int OWNER_TYPE_SCHEDULE = 6;
     public static final int INFO_TYPE_WX_TEMPLATE = 0;
     public static final int INFO_TYPE_SMS_MESSAGE = 1;
 

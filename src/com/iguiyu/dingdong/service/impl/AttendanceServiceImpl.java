@@ -51,7 +51,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         attendanceSMS.setFinishTime(DateUtil.dateFormat(rela.getFinish_time(), "yyyy-MM-dd"));
 
         try {
-            SmsUtil.sendAttendance(attendanceSMS);
+            SmsUtil.sendInfoSms(attendanceSMS);
         } catch (ApiException var6) {
             var6.printStackTrace();
         }

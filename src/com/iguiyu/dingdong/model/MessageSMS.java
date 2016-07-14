@@ -9,11 +9,10 @@ import com.iguiyu.dingdong.model.SMSBase;
 
 public class MessageSMS extends SMSBase {
     private String name;
-    private String homework;
-    private String finishTime;
+    private String content;
 
     public MessageSMS() {
-        this.setSms_template_code("SMS_5480161");
+        this.setSms_template_code("SMS_5725147");
         this.setSms_type("normal");
         this.setSmsFreeSignName("校园叮咚");
         this.setFormat("json");
@@ -27,19 +26,11 @@ public class MessageSMS extends SMSBase {
         this.name = name;
     }
 
-    public String getHomework() {
-        return this.homework;
+    public String getContent() {
+        return content;
     }
 
-    public void setHomework(String homework) {
-        this.homework = homework;
-    }
-
-    public String getFinishTime() {
-        return this.finishTime;
-    }
-
-    public void setFinishTime(String finishTime) {
-        this.finishTime = finishTime;
+    public void setContent(String content) {
+        this.content = content;
     }
 }

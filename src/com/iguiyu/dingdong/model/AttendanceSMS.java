@@ -50,4 +50,14 @@ public class AttendanceSMS extends SMSBase {
     public void setFinishTime(String finishTime) {
         this.finishTime = finishTime;
     }
+
+    @Override
+    public String getParams() {
+        super.getParams();
+        String params =  "{\"name\":\"" + this.getName() + "\"," + "\"attendance\":\""
+                + this.getAttendance() + "\"," + "\"finishTime\":\"" + this.getFinishTime()
+                + "\"," + "\"remark\":\"" + this.getRemark() + "\"}";
+
+        return params;
+    }
 }

@@ -21,6 +21,17 @@ public class HomeworkSMS extends SMSBase {
         this.setFormat("json");
     }
 
+    @Override
+    public String getParams() {
+         super.getParams();
+        String params = "{\"name\":\"" + this.getName() + "\"," + "\"homework\":\""
+                + this.getHomework() + "\",\"finishTime\":\""
+                + this.getFinishTime() + "\"}";
+
+        return params;
+    }
+
+
     public String getName() {
         return this.name;
     }

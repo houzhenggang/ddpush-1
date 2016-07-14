@@ -49,7 +49,7 @@ public class HomeworkServiceImpl implements HomeworkService {
         homeworkSMS.setRec_num(pushInfo.getTo());
 
         try {
-            SmsUtil.sendHomework(homeworkSMS);
+            SmsUtil.sendInfoSms(homeworkSMS);
         } catch (ApiException var6) {
             var6.printStackTrace();
         }

@@ -7,8 +7,10 @@ package com.iguiyu.dingdong.service.impl;
 
 import com.iguiyu.dingdong.dao.MessageDao;
 import com.iguiyu.dingdong.model.Message;
+import com.iguiyu.dingdong.model.MessageSMS;
 import com.iguiyu.dingdong.model.PushInfo;
 import com.iguiyu.dingdong.service.MessageService;
+import com.iguiyu.dingdong.sms.SmsUtil;
 import com.iguiyu.dingdong.util.DDWeixinUtil;
 import com.iguiyu.dingdong.util.DateUtil;
 import com.iguiyu.dingdong.weixin.TemplateData;
@@ -33,6 +35,17 @@ public class MessageServiceImpl implements MessageService {
     }
 
     public void sendSms(PushInfo pushInfo) {
+        MessageSMS sms = new MessageSMS();
+        sms.setName(pushInfo.getStudentName());
+        switch (pushInfo.getOwnerType()){
+            case PushInfo.OWNER_TYPE_APPRAISE:
+                sms.setContent(pushInfo.getRemark());
+                break;
+            case PushInfo.OWNER_TYPE_SCHEDULE:
+                sms.setContent(pushInfo.getRemark());
+                break;
+        }
+
     }
 
     private WxTemplate getMessageTemplate(PushInfo pushInfo, Message message) {

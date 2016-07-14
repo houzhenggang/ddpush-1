@@ -46,11 +46,12 @@ public class SmsTask {
         for(Iterator i$ = list.iterator(); i$.hasNext(); this.pushInfoDao.setSended(item.getId())) {
             item = (PushInfo)i$.next();
             switch(item.getOwnerType()) {
-            case 1:
-                this.attendanceService.sendSms(item);
-                break;
-            case 2:
-                this.homeworkService.sendSms(item);
+                case PushInfo.OWNER_TYPE_ATTENDANCE:
+                    this.attendanceService.sendSms(item);
+                    break;
+                case PushInfo.OWNER_TYPE_HOMEWORK:
+                    this.homeworkService.sendSms(item);
+                    break;
             }
         }
 

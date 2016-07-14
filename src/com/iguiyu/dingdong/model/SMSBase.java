@@ -5,9 +5,11 @@
 
 package com.iguiyu.dingdong.model;
 
+import com.iguiyu.dingdong.sms.SmsInfo;
+
 import java.sql.Timestamp;
 
-public class SMSBase {
+public class SMSBase implements SmsInfo {
     int id;
     String extend;
     String sms_type;
@@ -18,6 +20,11 @@ public class SMSBase {
     String format;
 
     public SMSBase() {
+    }
+
+    @Override
+    public String getParams() {
+        return "";
     }
 
     public int getId() {

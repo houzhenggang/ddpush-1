@@ -18,6 +18,13 @@ public class VerifyCode extends SMSBase {
         this.setFormat("json");
     }
 
+    @Override
+    public String getParams() {
+        super.getParams();
+        String params = "{\"code\":\"" + this.getCode() + "\",\"product\":\"" + this.getProduct() + "\"}";
+        return params;
+    }
+
     public String getProduct() {
         return this.product;
     }

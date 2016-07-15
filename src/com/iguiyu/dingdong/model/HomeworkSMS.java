@@ -5,7 +5,11 @@
 
 package com.iguiyu.dingdong.model;
 import com.iguiyu.dingdong.sms.SMSConst;
+import com.iguiyu.dingdong.sms.SmsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeworkSMS extends SMSBase {
     private String name;
@@ -24,11 +28,10 @@ public class HomeworkSMS extends SMSBase {
     @Override
     public String getParams() {
          super.getParams();
-        String params = "{\"name\":\"" + this.getName() + "\"," + "\"homework\":\""
-                + this.getHomework() + "\",\"finishTime\":\""
-                + this.getFinishTime() + "\"}";
-
-        return params;
+        Map<String,String> m = new HashMap<String,String>();
+        m.put("name",this.getName());
+        m.put("finishTime",this.getFinishTime());
+        return SmsUtil.generateParams(m);
     }
 
 

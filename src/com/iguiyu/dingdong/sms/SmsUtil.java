@@ -14,6 +14,9 @@ import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SmsUtil {
     public SmsUtil() {
     }
@@ -37,6 +40,16 @@ public class SmsUtil {
         return response;
     }
 
+    public static String generateParams(Map<String,String> m){
+        String re = "{";
+        for (Map.Entry<String,String> t: m.entrySet()) {
+            re+=("\""+t.getKey()+"\":\""+t.getValue()+"\",");
+        }
+        re = re.substring(0,re.length()-1);
+        re+="}";
+
+        return re;
+    }
     public static void main(String[] args) {
         AttendanceSMS attendanceSMS = new AttendanceSMS();
         attendanceSMS.setName("胡国静");
@@ -44,12 +57,15 @@ public class SmsUtil {
         attendanceSMS.setAttendance("你猜不猜得到我?");
         attendanceSMS.setRemark("本周考勤");
         attendanceSMS.setFinishTime("2015-03-09");
-
         try {
             sendInfoSms(attendanceSMS);
         } catch (ApiException var3) {
             var3.printStackTrace();
         }
-
+//        Map<String,String> m = new HashMap<String,String>();
+//        m.put("a","a1");
+//        m.put("b","b1");
+//        m.put("c","c1");
+//        System.out.println(generateParams(m));
     }
 }

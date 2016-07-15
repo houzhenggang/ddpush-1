@@ -6,6 +6,10 @@
 package com.iguiyu.dingdong.model;
 
 import com.iguiyu.dingdong.model.SMSBase;
+import com.iguiyu.dingdong.sms.SmsUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MessageSMS extends SMSBase {
     private String name;
@@ -17,6 +21,17 @@ public class MessageSMS extends SMSBase {
         this.setSmsFreeSignName("校园叮咚");
         this.setFormat("json");
     }
+
+    @Override
+    public String getParams() {
+        super.getParams();
+        Map<String,String> m = new HashMap<String,String>();
+        m.put("name",this.getName());
+        m.put("content",this.getContent());
+        return SmsUtil.generateParams(m);
+    }
+
+
 
     public String getName() {
         return this.name;

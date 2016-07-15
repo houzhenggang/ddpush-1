@@ -6,6 +6,11 @@
 package com.iguiyu.dingdong.model;
 
 
+import com.iguiyu.dingdong.sms.SmsUtil;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class AttendanceSMS extends SMSBase {
     private String name;
     private String attendance;
@@ -54,10 +59,11 @@ public class AttendanceSMS extends SMSBase {
     @Override
     public String getParams() {
         super.getParams();
-        String params =  "{\"name\":\"" + this.getName() + "\"," + "\"attendance\":\""
-                + this.getAttendance() + "\"," + "\"finishTime\":\"" + this.getFinishTime()
-                + "\"," + "\"remark\":\"" + this.getRemark() + "\"}";
-
-        return params;
+        Map<String,String> m = new HashMap<String,String>();
+        m.put("name",this.getName());
+        m.put("attendance",this.getAttendance());
+        m.put("finishTime",this.getFinishTime());
+        m.put("remark",this.getRemark());
+        return SmsUtil.generateParams(m);
     }
 }

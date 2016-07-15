@@ -1,6 +1,7 @@
 package com.iguiyu.dingdong.service.impl;
 
 import com.iguiyu.dingdong.dao.StudentDao;
+import com.iguiyu.dingdong.model.MessageSMS;
 import com.iguiyu.dingdong.model.PushInfo;
 import com.iguiyu.dingdong.model.Student;
 import com.iguiyu.dingdong.service.InfoService;
@@ -32,7 +33,16 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     public void sendSms(PushInfo info) {
-
+        MessageSMS sms = new MessageSMS();
+        sms.setName(info.getStudentName());
+        switch (info.getOwnerType()){
+            case PushInfo.OWNER_TYPE_APPRAISE:
+                sms.setContent(info.getRemark());
+                break;
+            case PushInfo.OWNER_TYPE_SCHEDULE:
+                sms.setContent(info.getRemark());
+                break;
+        }
     }
 
     private WxTemplate getInfoTemplate(PushInfo pushInfo) {
@@ -42,13 +52,12 @@ public class InfoServiceImpl implements InfoService {
         template.setTopcolor("#04be02");
         template.setTouser(pushInfo.getTo());
         String firstStr = "";
-        Student s = studentDao.get(pushInfo.getStudentId());
         switch (pushInfo.getOwnerType()) {
             case PushInfo.OWNER_TYPE_APPRAISE:
-                firstStr = s.getName()+"获得了新的奖评!";
+                firstStr = pushInfo.getStudentName()+"获得了新的奖评!";
                 break;
             case PushInfo.OWNER_TYPE_SCHEDULE:
-                firstStr = s.getName()+"所在班级的课表更新啦!";
+                firstStr = pushInfo.getStudentName()+"所在班级的课表更新啦!";
                 break;
             default:
                 break;

@@ -6,6 +6,10 @@
 package com.iguiyu.dingdong.model;
 
 import com.iguiyu.dingdong.model.SMSBase;
+import com.iguiyu.dingdong.sms.SmsUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class VerifyCode extends SMSBase {
     private String code;
@@ -21,8 +25,10 @@ public class VerifyCode extends SMSBase {
     @Override
     public String getParams() {
         super.getParams();
-        String params = "{\"code\":\"" + this.getCode() + "\",\"product\":\"" + this.getProduct() + "\"}";
-        return params;
+        Map<String,String> m = new HashMap<String,String>();
+        m.put("code",this.getCode());
+        m.put("product",this.getProduct());
+        return SmsUtil.generateParams(m);
     }
 
     public String getProduct() {

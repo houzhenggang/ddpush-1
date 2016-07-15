@@ -13,6 +13,10 @@ import com.iguiyu.dingdong.service.AttendanceService;
 import com.iguiyu.dingdong.service.HomeworkService;
 import java.util.Iterator;
 import java.util.List;
+
+import com.iguiyu.dingdong.service.InfoService;
+import com.iguiyu.dingdong.service.MessageService;
+import com.iguiyu.dingdong.service.impl.InfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -31,7 +35,8 @@ public class SmsTask {
     AttendanceService attendanceService;
     @Autowired
     HomeworkService homeworkService;
-
+    @Autowired
+    InfoServiceImpl infoService;
     public SmsTask() {
     }
 
@@ -51,6 +56,12 @@ public class SmsTask {
                     break;
                 case PushInfo.OWNER_TYPE_HOMEWORK:
                     this.homeworkService.sendSms(item);
+                    break;
+                case PushInfo.OWNER_TYPE_APPRAISE:
+                    this.infoService.sendSms(item);
+                    break;
+                case PushInfo.OWNER_TYPE_SCHEDULE:
+                    this.infoService.sendSms(item);
                     break;
             }
         }

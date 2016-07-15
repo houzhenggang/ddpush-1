@@ -35,16 +35,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     public void sendSms(PushInfo pushInfo) {
-        MessageSMS sms = new MessageSMS();
-        sms.setName(pushInfo.getStudentName());
-        switch (pushInfo.getOwnerType()){
-            case PushInfo.OWNER_TYPE_APPRAISE:
-                sms.setContent(pushInfo.getRemark());
-                break;
-            case PushInfo.OWNER_TYPE_SCHEDULE:
-                sms.setContent(pushInfo.getRemark());
-                break;
-        }
+
 
     }
 

@@ -5,6 +5,7 @@
 
 package com.iguiyu.dingdong.dao;
 
+import com.iguiyu.dingdong.model.SchoolClass;
 import com.iguiyu.dingdong.model.Student;
 import com.iguiyu.dingdong.model.StudentParentRela;
 import java.util.List;
@@ -18,6 +19,9 @@ public interface StudentDao {
 
     @Select({"SELECT * FROM STUDENT WHERE ID = #{id}"})
     Student get(int id);
+
+    @Select("select c.* from school_class_rela c,student s where c.class_id=s.class_id and s.id=#{id}")
+    SchoolClass getSchoolByStudentId(int id);
 
     @Select({" SELECT S.*,P.ID PARENT_ID,P.PARENT_OPENID,P.ISMAIN FROM SCHOOL_CLASS_RELA SC,STUDENT S,PARENT_STUDENT_RELA P WHERE 1=1 AND S.CLASS_ID = SC.CLASS_ID AND P.STUDENT_ID = S.ID AND SC.CLASS_ID = #{class_id} "})
     List<StudentParentRela> getStudentParentRelaByClass(int var1);

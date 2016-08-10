@@ -11,6 +11,8 @@ public class SchoolClass {
     private String school_type;
     private String class_name;
     private int current_level;
+    private String desc;
+    public static final String[] GRADE = {"一年级","二年级","三年级","四年级","五年级","六年级","七年级","八年级","九年级"};
 
     public SchoolClass() {
     }
@@ -53,5 +55,12 @@ public class SchoolClass {
 
     public void setCurrent_level(int current_level) {
         this.current_level = current_level;
+    }
+
+    public String getDesc() {
+        if(current_level<1)
+            return class_name;
+
+        return (current_level>0?GRADE[current_level-1]:"")+class_name;
     }
 }

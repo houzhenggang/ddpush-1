@@ -68,10 +68,13 @@ public class WXTasks {
                 break;
             case PushInfo.OWNER_TYPE_SCORE:
                 this.scoreService.sendWXTemplate(item);
+                break;
             case PushInfo.OWNER_TYPE_APPRAISE:
                 this.infoService.sendWXTemplate(item);
+                break;
             case PushInfo.OWNER_TYPE_SCHEDULE:
                 this.infoService.sendWXTemplate(item);
+                break;
 
 
             }

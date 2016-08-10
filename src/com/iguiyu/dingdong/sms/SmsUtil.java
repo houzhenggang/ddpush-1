@@ -29,6 +29,7 @@ public class SmsUtil {
         } else {
             req.setExtend("");
         }
+        System.out.println("    >>>>>>  sms send "+sms.getParams()+"   "+sms.getRec_num());
 
         req.setSmsType(sms.getSms_type());
         req.setSmsFreeSignName(sms.getSmsFreeSignName());
@@ -36,7 +37,7 @@ public class SmsUtil {
         req.setRecNum(sms.getRec_num());
         req.setSmsTemplateCode(sms.getSms_template_code());
         AlibabaAliqinFcSmsNumSendResponse response = (AlibabaAliqinFcSmsNumSendResponse)client.execute(req);
-        System.out.println(response.getBody());
+        System.out.println("    >>>>>>  sms send "+response.getBody());
         return response;
     }
 
@@ -51,14 +52,20 @@ public class SmsUtil {
         return re;
     }
     public static void main(String[] args) {
-        AttendanceSMS attendanceSMS = new AttendanceSMS();
-        attendanceSMS.setName("胡国静");
-        attendanceSMS.setRec_num("15150552538");
-        attendanceSMS.setAttendance("你猜不猜得到我?");
-        attendanceSMS.setRemark("本周考勤");
-        attendanceSMS.setFinishTime("2015-03-09");
+//        AttendanceSMS attendanceSMS = new AttendanceSMS();
+//        attendanceSMS.setName("胡国静");
+//        attendanceSMS.setRec_num("15150552538");
+//        attendanceSMS.setAttendance("你猜不猜得到我?");
+//        attendanceSMS.setRemark("本周考勤");
+//        attendanceSMS.setFinishTime("2015-03-09");
+        MessageSMS sms = new MessageSMS();
+        sms.setName("wangyi");
+        sms.setContent("neirong");
+//        sms.setFinishTime("yyyy-MM-dd");
+        sms.setRec_num("15150552538");
+
         try {
-            sendInfoSms(attendanceSMS);
+            sendInfoSms(sms);
         } catch (ApiException var3) {
             var3.printStackTrace();
         }

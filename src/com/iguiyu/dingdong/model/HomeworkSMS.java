@@ -30,6 +30,7 @@ public class HomeworkSMS extends SMSBase {
          super.getParams();
         Map<String,String> m = new HashMap<String,String>();
         m.put("name",this.getName());
+        m.put("homework",this.getHomework());
         m.put("finishTime",this.getFinishTime());
         return SmsUtil.generateParams(m);
     }
